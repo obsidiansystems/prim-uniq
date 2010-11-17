@@ -10,10 +10,15 @@ maintainer:             James Cook <mokus@deepbondi.net>
 license:                PublicDomain
 homepage:               /dev/null
 
-category:               Data
+source-repository head
+  type:     darcs
+  location: http://code.haskell.org/~mokus/prim-uniq
+
+category:               Data, Dependent Types
 synopsis:               Opaque unique identifiers in primitive state monads
 description:            Opaque unique identifiers in primitive state monads 
-                        and ad-hoc GADTs based on them.
+                        and a GADT-like type using them as witnesses of type
+                        equality.
 
 Library
   hs-source-dirs:       src
