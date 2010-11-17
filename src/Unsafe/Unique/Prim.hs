@@ -1,15 +1,17 @@
-{-# LANGUAGE BangPatterns #-}
-module Data.Unique.Prim (Uniq, getUniq, unsafeMkUniq) where
+{-# LANGUAGE BangPatterns, FlexibleInstances #-}
+module Unsafe.Unique.Prim
+    ( Uniq, getUniq
+    , unsafeMkUniq, unsafeShowsPrecUniq, unsafeShowUniq
+    ) where
 
 import Control.Monad.Primitive
 import Data.IORef
 import System.IO.Unsafe
 
 -- A smaller numeric type could be used, such as Word or Word64, but I
--- want to be able to guarantee uniqueness.
--- Smaller types would require either checking for overflow or accepting
--- the possibility of aliasing.  The latter would make this type's usage
--- in 'Tag' unsound.
+-- want to be able to guarantee uniqueness, even over very long execution 
+-- times.  Smaller types would require either checking for overflow or 
+-- accepting the possibility of aliasing.
 
 -- |A 'Uniq' is a value that can only be constructed under controlled 
 -- conditions (in IO or ST, basically), and once constructed can only be
@@ -19,7 +21,11 @@ import System.IO.Unsafe
 -- the order is deterministic and a proper ordering relation (eg, > is 
 -- transitive and irreflexive, etc.)
 newtype Uniq s = Uniq Integer deriving (Eq, Ord)
-instance Show (Uniq s) where showsPrec p (Uniq u) = showsPrec p u
+
+-- |There is only one RealWorld, so this instance is sound (unlike the general
+-- `unsafeShowsPrecUniq`).
+instance Show (Uniq RealWorld) where
+    showsPrec = unsafeShowsPrecUniq
 
 {-# NOINLINE nextUniq #-}
 nextUniq :: IORef Integer
@@ -35,6 +41,17 @@ getUniq = unsafePrimToPrim (atomicModifyIORef nextUniq (\(!u) -> let u' = u+1 in
 -- is exposed.  Users must accept responsibility for ensuring true uniqueness 
 -- across the lifetime of the resulting 'Uniq' value.  Failure to do so could
 -- lead to type unsoundness in code depending on uniqueness as a type witness
--- (eg, TypeExperiments.GCompare.Tag).
+-- (eg, Data.GADT.Tag).
 unsafeMkUniq :: Integer -> Uniq s
 unsafeMkUniq n = Uniq n
+
+-- |A `Show` instance for @`Uniq` s@ would not be sound, but for debugging
+-- purposes we occasionally will want to do it anyway.  Its unsoundness is 
+-- nicely demonstrated by:
+-- 
+-- > runST (fmap show getUniq) :: String
+unsafeShowsPrecUniq :: Int -> Uniq s -> ShowS
+unsafeShowsPrecUniq p (Uniq u) = showsPrec p u
+
+unsafeShowUniq :: Uniq s -> String
+unsafeShowUniq (Uniq u) = show u

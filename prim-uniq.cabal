@@ -1,6 +1,6 @@
 name:                   prim-uniq
-version:                0.0.0.1
-stability:              experimental
+version:                0.1
+stability:              provisional
 
 cabal-version:          >= 1.2
 build-type:             Simple
@@ -18,4 +18,5 @@ description:            Opaque unique identifiers in primitive state monads
 Library
   hs-source-dirs:       src
   exposed-modules:      Data.Unique.Prim
+                        Unsafe.Unique.Prim
   build-depends:        base >= 3 && <5, primitive
