@@ -18,5 +18,7 @@ description:            Opaque unique identifiers in primitive state monads
 Library
   hs-source-dirs:       src
   exposed-modules:      Data.Unique.Prim
+                        Data.Unique.Tag
                         Unsafe.Unique.Prim
-  build-depends:        base >= 3 && <5, primitive
+                        Unsafe.Unique.Tag
+  build-depends:        base >= 3 && <5, dependent-sum, primitive
