@@ -11,7 +11,9 @@ import System.IO.Unsafe
 -- A smaller numeric type could be used, such as Word or Word64, but I
 -- want to be able to guarantee uniqueness, even over very long execution 
 -- times.  Smaller types would require either checking for overflow or 
--- accepting the possibility of aliasing.
+-- accepting the possibility of aliasing.  Word64 is almost certainly big 
+-- enough for practical purposes, though.  Allocating one 'Uniq' every
+-- nanosecond, it would take 584 years to start aliasing....
 
 -- |A 'Uniq' is a value that can only be constructed under controlled 
 -- conditions (in IO or ST, basically), and once constructed can only be

@@ -27,6 +27,10 @@ import Control.Monad
 newtype Tag s a = Tag (Uniq s) deriving (Eq, Ord)
 instance Show (Tag RealWorld a) where showsPrec p (Tag u) = showsPrec p u
 instance GShow (Tag RealWorld)  where gshowsPrec _showsValPrec = showsPrec
+instance GEq (Tag s) where
+    geq (Tag a) (Tag b)
+        | a == b    = Just (unsafeCoerce Refl)
+        | otherwise = Nothing
 instance GCompare (Tag s) where
     gcompare (Tag a) (Tag b) = case compare a b of
         LT -> GLT
