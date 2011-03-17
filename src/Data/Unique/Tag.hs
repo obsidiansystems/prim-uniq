@@ -1,9 +1,9 @@
 module Data.Unique.Tag
-    ( GOrdering(..)
+    ( Tag
+    , newTag
+    , GOrdering(..)
     , GCompare(..)
     , geq
-    , Tag
-    , newTag
     ) where
 
 import Data.GADT.Compare

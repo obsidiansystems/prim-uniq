@@ -24,12 +24,19 @@ import System.IO.Unsafe
 -- transitive and irreflexive, etc.)
 newtype Uniq s = Uniq Integer deriving (Eq, Ord)
 
--- |There is only one RealWorld, so this instance is sound (unlike the general
--- `unsafeShowsPrecUniq`).
+-- |There is only one 'RealWorld', so this instance is sound (unlike the 
+-- general 'unsafeShowsPrecUniq').  Note that there is no particular
+-- relationship between 'Uniq' values (or the strings 'show' turns them into)
+-- created in different executions of a program.  The value they render to
+-- should be considered completely arbitrary, and the Show instance only even
+-- exists for convenience when testing code that uses 'Uniq's.
 instance Show (Uniq RealWorld) where
     showsPrec = unsafeShowsPrecUniq
 
 {-# NOINLINE nextUniq #-}
+-- | [internal] Assuming the compiler behaves "as expected", this is a single
+-- statically-created IORef holding the counter which will be used as the 
+-- source of new 'Prim' keys (in 'ST' and 'IO').
 nextUniq :: IORef Integer
 nextUniq = unsafePerformIO (newIORef 0)
 
@@ -43,7 +50,7 @@ getUniq = unsafePrimToPrim (atomicModifyIORef nextUniq (\(!u) -> let !u' = u+1 i
 -- is exposed.  Users must accept responsibility for ensuring true uniqueness 
 -- across the lifetime of the resulting 'Uniq' value.  Failure to do so could
 -- lead to type unsoundness in code depending on uniqueness as a type witness
--- (eg, Data.GADT.Tag).
+-- (eg, "Data.Unique.Tag").
 unsafeMkUniq :: Integer -> Uniq s
 unsafeMkUniq n = Uniq n
 
