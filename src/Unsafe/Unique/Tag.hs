@@ -29,7 +29,7 @@ import Control.Monad
 -- assert that they know better than the type system.
 newtype Tag s a = Tag (Uniq s) deriving (Eq, Ord)
 instance Show (Tag RealWorld a) where showsPrec p (Tag u) = showsPrec p u
-instance GShow (Tag RealWorld)  where gshowsPrec _showsValPrec = showsPrec
+instance GShow (Tag RealWorld)  where gshowsPrec = showsPrec
 instance GEq (Tag s) where
     geq (Tag a) (Tag b)
         | a == b    = Just (unsafeCoerce Refl)
