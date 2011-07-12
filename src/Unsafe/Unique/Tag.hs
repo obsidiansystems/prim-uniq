@@ -40,9 +40,8 @@ instance GCompare (Tag s) where
         EQ -> unsafeCoerce (GEQ :: GOrdering () ())
         GT -> GGT
 
--- |Create a new tag witnessing a type @a@.  The tag can later be used to
--- recover the type @a@ through unification if @a@ was lost through 
--- existential quantification.
+-- |Create a new tag witnessing a type @a@.  The 'GEq' or 'GOrdering' instance 
+-- can be used to discover type equality of two occurrences of the same tag.
 -- 
 -- (I'm not sure whether the recovery is sound if @a@ is instantiated as a
 -- polymorphic type, so I'd advise caution if you intend to try it.  I suspect 
