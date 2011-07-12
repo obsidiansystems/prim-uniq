@@ -8,7 +8,7 @@ build-type:             Simple
 author:                 James Cook <mokus@deepbondi.net>
 maintainer:             James Cook <mokus@deepbondi.net>
 license:                PublicDomain
-homepage:               /dev/null
+homepage:               https://github.com/mokus0/prim-uniq
 
 category:               Data, Dependent Types
 synopsis:               Opaque unique identifiers in primitive state monads
@@ -17,8 +17,8 @@ description:            Opaque unique identifiers in primitive state monads
                         equality.
 
 source-repository head
-  type:     darcs
-  location: http://code.haskell.org/~mokus/prim-uniq
+  type:     git
+  location: git://github.com/mokus0/prim-uniq.git
 
 Library
   hs-source-dirs:       src
