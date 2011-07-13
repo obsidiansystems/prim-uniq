@@ -16,6 +16,8 @@ description:            Opaque unique identifiers in primitive state monads
                         and a GADT-like type using them as witnesses of type
                         equality.
 
+tested-with:            GHC == 7.0.4, GHC == 6.12.3, GHC == 6.10.4
+
 source-repository head
   type:     git
   location: git://github.com/mokus0/prim-uniq.git
