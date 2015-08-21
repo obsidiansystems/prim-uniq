@@ -16,10 +16,13 @@ description:            Opaque unique identifiers in primitive state monads
                         and a GADT-like type using them as witnesses of type
                         equality.
 
-tested-with:            GHC == 7.2.1,
-                        GHC == 7.0.4,
-                        GHC == 6.12.3,
-                        GHC == 6.10.4
+tested-with:            GHC == 7.0.4,
+                        GHC == 7.2.2,
+                        GHC == 7.4.2,
+                        GHC == 7.6.3,
+                        GHC == 7.8.4,
+                        GHC == 7.10.1,
+                        GHC == 7.11
 
 source-repository head
   type:     git
