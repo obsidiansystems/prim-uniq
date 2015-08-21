@@ -1,5 +1,5 @@
 name:                   prim-uniq
-version:                0.1.0.1
+version:                0.1.0.2
 stability:              provisional
 
 cabal-version:          >= 1.6
@@ -31,4 +31,6 @@ Library
                         Data.Unique.Tag
                         Unsafe.Unique.Prim
                         Unsafe.Unique.Tag
-  build-depends:        base >= 3 && <5, dependent-sum, primitive
+  build-depends:        base >= 3 && <5,
+                        dependent-sum >= 0.2 && < 0.4,
+                        primitive
