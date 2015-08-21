@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mokus0/prim-uniq.svg)](https://travis-ci.org/mokus0/prim-uniq)
+
 Unique values and an ad-hoc "unique-tag GADT"
 =============================================
 
