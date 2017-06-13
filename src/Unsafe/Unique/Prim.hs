@@ -6,6 +6,7 @@ module Unsafe.Unique.Prim
 
 import Control.Monad.Primitive
 import Data.IORef
+import Data.Word
 import System.IO.Unsafe
 
 -- A smaller numeric type could be used, such as Word or Word64, but I
@@ -24,7 +25,7 @@ import System.IO.Unsafe
 -- that, no promises regarding ordering are made except that once constructed
 -- the order is deterministic and a proper ordering relation (eg, > is 
 -- transitive and irreflexive, etc.)
-newtype Uniq s = Uniq Integer deriving (Eq, Ord)
+newtype Uniq s = Uniq Word64 deriving (Eq, Ord)
 
 -- |There is only one 'RealWorld', so this instance is sound (unlike the 
 -- general 'unsafeShowsPrecUniq').  Note that there is no particular
@@ -39,7 +40,7 @@ instance Show (Uniq RealWorld) where
 -- | [internal] Assuming the compiler behaves "as expected", this is a single
 -- statically-created IORef holding the counter which will be used as the 
 -- source of new 'Prim' keys (in 'ST' and 'IO').
-nextUniq :: IORef Integer
+nextUniq :: IORef Word64
 nextUniq = unsafePerformIO (newIORef 0)
 
 -- |Construct a new 'Uniq' that is equal to itself, unequal to every other
@@ -53,7 +54,7 @@ getUniq = unsafePrimToPrim (atomicModifyIORef nextUniq (\(!u) -> let !u' = u+1 i
 -- across the lifetime of the resulting 'Uniq' value.  Failure to do so could
 -- lead to type unsoundness in code depending on uniqueness as a type witness
 -- (eg, "Data.Unique.Tag").
-unsafeMkUniq :: Integer -> Uniq s
+unsafeMkUniq :: Word64 -> Uniq s
 unsafeMkUniq n = Uniq n
 
 -- |A `Show` instance for @`Uniq` s@ would not be sound, but for debugging

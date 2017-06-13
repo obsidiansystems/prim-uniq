@@ -7,6 +7,7 @@ module Unsafe.Unique.Tag
 
 import Data.GADT.Compare
 import Data.GADT.Show
+import Data.Word
 import Unsafe.Unique.Prim
 import Unsafe.Coerce
 import Control.Monad.Primitive
@@ -55,5 +56,5 @@ newTag = liftM Tag getUniq
 -- uniqueness of the 'Integer' across the lifetime of the 'Tag' (including
 -- properly controlling the lifetime of the 'Tag' if necessary 
 -- by universal quantification when discharging the @s@ phantom type)
-veryUnsafeMkTag :: Integer -> Tag s a
+veryUnsafeMkTag :: Word64 -> Tag s a
 veryUnsafeMkTag = Tag . unsafeMkUniq
