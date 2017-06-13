@@ -35,5 +35,5 @@ Library
                         Unsafe.Unique.Prim
                         Unsafe.Unique.Tag
   build-depends:        base >= 3 && <5,
-                        dependent-sum >= 0.2 && < 0.4,
+                        dependent-sum >= 0.2 && < 0.5,
                         primitive
