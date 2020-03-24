@@ -1,5 +1,5 @@
 name:                   prim-uniq
-version:                0.1.0.2
+version:                0.2
 stability:              provisional
 
 cabal-version:          >= 1.6
@@ -16,13 +16,13 @@ description:            Opaque unique identifiers in primitive state monads
                         and a GADT-like type using them as witnesses of type
                         equality.
 
-tested-with:            GHC == 7.0.4,
-                        GHC == 7.2.2,
-                        GHC == 7.4.2,
-                        GHC == 7.6.3,
-                        GHC == 7.8.4,
-                        GHC == 7.10.1,
-                        GHC == 7.11
+tested-with:            GHC == 7.8.4,
+                        GHC == 7.10.3,
+                        GHC == 8.0.2,
+                        GHC == 8.2.2,
+                        GHC == 8.4.3,
+                        GHC == 8.6.3,
+                        GHC == 8.8.3
 
 source-repository head
   type:     git
@@ -35,5 +35,5 @@ Library
                         Unsafe.Unique.Prim
                         Unsafe.Unique.Tag
   build-depends:        base >= 3 && <5,
-                        dependent-sum >= 0.2 && < 0.5,
+                        dependent-sum >= 0.7 && < 0.8,
                         primitive

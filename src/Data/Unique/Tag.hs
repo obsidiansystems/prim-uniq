@@ -8,7 +8,7 @@ module Data.Unique.Tag
     
     , RealWorld
     
-    , (:=)(..)
+    , (:~:)(..)
     , GEq(..)
     
     , GOrdering(..)
@@ -17,4 +17,5 @@ module Data.Unique.Tag
 
 import Data.GADT.Compare
 import Unsafe.Unique.Tag
+import Data.Type.Equality ((:~:)(..))
 import Control.Monad.Primitive (RealWorld)
