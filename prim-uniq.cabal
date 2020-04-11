@@ -6,15 +6,18 @@ cabal-version:          >= 1.6
 build-type:             Simple
 
 author:                 James Cook <mokus@deepbondi.net>
-maintainer:             James Cook <mokus@deepbondi.net>
+maintainer:             Obsidian Systems, LLC <maintainer@obsidian.systems>
 license:                PublicDomain
-homepage:               https://github.com/mokus0/prim-uniq
+homepage:               https://github.com/obsidiansystems/prim-uniq
 
 category:               Data, Dependent Types
 synopsis:               Opaque unique identifiers in primitive state monads
 description:            Opaque unique identifiers in primitive state monads
                         and a GADT-like type using them as witnesses of type
                         equality.
+
+extra-source-files:     README.md
+                        ChangeLog.md
 
 tested-with:            GHC == 8.0.2,
                         GHC == 8.2.2,
@@ -24,7 +27,7 @@ tested-with:            GHC == 8.0.2,
 
 source-repository head
   type:     git
-  location: git://github.com/mokus0/prim-uniq.git
+  location: https://github.com/obsidiansystems/prim-uniq
 
 Library
   hs-source-dirs:       src
