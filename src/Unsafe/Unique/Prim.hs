@@ -46,7 +46,7 @@ nextUniq = unsafePerformIO (newIORef 0)
 -- 'Uniq' constructed in the same monad, and incomparable to every 'Uniq' 
 -- constructed in any other monad.
 getUniq :: PrimMonad m => m (Uniq (PrimState m))
-getUniq = unsafePrimToPrim (atomicModifyIORef nextUniq (\(!u) -> let !u' = u+1 in (u', Uniq u)))
+getUniq = unsafePrimToPrim (atomicModifyIORef' nextUniq (\u -> (u+1, Uniq u)))
 
 -- |For the implementation of 'Uniq' construction in new monads, this operation
 -- is exposed.  Users must accept responsibility for ensuring true uniqueness 
