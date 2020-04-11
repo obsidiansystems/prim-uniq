@@ -1,14 +1,11 @@
-{-# LANGUAGE CPP #-}
-#if defined(__GLASGOW_HASKELL__) && __GLASGOW_HASKELL__ >= 702
 {-# LANGUAGE Trustworthy #-}
-#endif
 module Data.Unique.Tag
     ( Tag
     , newTag
     
     , RealWorld
     
-    , (:=)(..)
+    , (:~:)(..)
     , GEq(..)
     
     , GOrdering(..)
@@ -17,4 +14,5 @@ module Data.Unique.Tag
 
 import Data.GADT.Compare
 import Unsafe.Unique.Tag
+import Data.Type.Equality ((:~:)(..))
 import Control.Monad.Primitive (RealWorld)

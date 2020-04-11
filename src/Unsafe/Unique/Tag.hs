@@ -11,6 +11,7 @@ import Unsafe.Unique.Prim
 import Unsafe.Coerce
 import Control.Monad.Primitive
 import Control.Monad
+import Data.Type.Equality ((:~:)(..))
 
 -- |The 'Tag' type is like an ad-hoc GADT allowing runtime creation of new 
 -- constructors.  Specifically, it is like a GADT \"enumeration\" with one
