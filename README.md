@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/github/obsidiansystems/prim-uniq.svg)](https://travis-ci.org/obsidiansystems/prim-uniq)
+[![Build Status](https://travis-ci.org/obsidiansystems/prim-uniq.svg)](https://travis-ci.org/obsidiansystems/prim-uniq)
 
 Unique values and an ad-hoc "unique-tag GADT"
 =============================================
